@@ -1,0 +1,32 @@
+D .
+D comp
+P C0F308EA boardFragile1.png
+P F5BA8DEA boardFragile2.png
+P F9BDA130 boardFragile3.png
+P 6D114288 boardFragile4.png
+P CA4FA1FF boardLeft.png
+P 7D38AADA boardNormal.png
+P 4BF55A0E boardPrickly.png
+P 6885A08E boardRight.png
+P D303676B hero_run1.png
+P ADB70C1A hero_run10.png
+P 8AABF98A hero_run11.png
+P 5E71BD92 hero_run12.png
+P 2F18BE55 hero_run2.png
+P 45B463D2 hero_run3.png
+P A434AB1F hero_run4.png
+P 40BDAC73 hero_run5.png
+P B39C9C47 hero_run6.png
+P 9F721655 hero_run7.png
+P C9916E83 hero_run8.png
+P D4E32225 hero_run9.png
+P B39C9C47 hero_stay.png
+P 8623C776 hp10.png
+P 7CF51DF3 label.png
+P DE7F5FB9 left.png
+R D2DDF581 lwdownbg.png
+P 61CE6C54 right.png
+D sounds
+R B05A70C3 hit0.mp3
+R 07B5C556 hit1.mp3
+R E3C9DE00 hit2.mp3

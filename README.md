@@ -4,20 +4,14 @@
 使用LayaAir 引擎，模仿《是男人就下100层》所做的H5小游戏
 
 #### 软件架构
-软件架构说明
+LayaSample：游戏主逻辑脚本
+Board: 板块类
+Role: 人物类
+GameInfo: 游戏UI类
 
+#### 安装教程与使用说明
 
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
-
-#### 使用说明
-
-1. xxxx
-2. xxxx
-3. xxxx
+参见LayaBox官方教程
 
 #### 参与贡献
 
