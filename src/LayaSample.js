@@ -6,8 +6,6 @@ Laya.MiniAdpter.init();
 Laya.init(stageWidth, stageHeight, WebGL);
 Laya.stage.scaleMode = "showall";
 
-var engine;
-
 Laya.loader.load("res/atlas/comp.atlas",Laya.Handler.create(this,onLoad),null,Laya.Loader.ATLAS);
 
 function onLoad(){
@@ -57,13 +55,13 @@ function onMouseUp(){
 function runLeft(){
     this.luwei.playAction("run_left");
     if(this.luwei.x - 1 >= 55){
-        this.luwei.x -= 5;
+        this.luwei.x -= 7;
     }
 }
 function runRight(){
     this.luwei.playAction("run_right");
     if(this.luwei.x + 1 <= stageWidth-55){
-        this.luwei.x += 5;
+        this.luwei.x += 7;
     }
 }
 //键盘响应
@@ -83,7 +81,7 @@ function onLoop(){
     showHp(this.luwei.hp);
     //TODO:难度分级，简单普通困难三模式
     //30帧一个板
-    if(Laya.timer.currFrame % 30 === 0){
+    if(Laya.timer.currFrame % this.createBoardInterval === 0){
         createBoard();
     }
     //150帧下一层
@@ -93,7 +91,7 @@ function onLoop(){
     }
     //检测碰撞
     //芦苇下落
-    this.luwei.fall();
+    
     for(var i = this.boardBox.numChildren-1;i>-1;i--){
         var board = this.boardBox.getChildAt(i);
         board.y += board.speed;
@@ -110,6 +108,7 @@ function onLoop(){
         }
     }
     if(this.isFall){
+        this.luwei.fall();
         Laya.timer.clearAll(this.luwei);
         this.firstIn = true;
     }
@@ -139,15 +138,15 @@ function startGame(nandu){
     //难度判断
     switch (nandu) {
         case "EASY":
-            this.createBoardInterval = 30;
+            this.createBoardInterval = 40;
             this.boardSpeed = -3;
             break;
         case "NORMAL":
-            this.createBoardInterval = 20;
+            this.createBoardInterval = 45;
             this.boardSpeed = -4;
             break;
         case "HARD":
-            this.createBoardInterval = 10;
+            this.createBoardInterval = 50;
             this.boardSpeed = -5;
             break;
         default:

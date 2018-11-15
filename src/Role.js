@@ -61,11 +61,15 @@ var Role = (function(_super){
     }
 
     _proto.moveLeft = function(num){
-        this.x -= num;
+        if(this.x - 1 >= 55){
+            this.x -= num;
+        }
     }
 
     _proto.moveRight = function(num){
-        this.x += num;
+        if(this.x + 1 <= stageWidth-55){
+            this.x += num;
+        }
     }
 
     _proto.playAction = function(act){

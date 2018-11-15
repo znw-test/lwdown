@@ -52,7 +52,20 @@ var Role = (function(_super){
         }
         else{
             this.hp = 0;
+            this.dead = true;
         }
+    }
+
+    _proto.fall = function(){
+        this.y += this.speed;
+    }
+
+    _proto.moveLeft = function(num){
+        this.x -= num;
+    }
+
+    _proto.moveRight = function(num){
+        this.x += num;
     }
 
     _proto.playAction = function(act){
