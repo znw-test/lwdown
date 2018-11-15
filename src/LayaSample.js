@@ -34,9 +34,7 @@ function onLoad(){
     //增加层级
     this.boardBox = new Laya.Sprite();
     Laya.stage.addChild(this.boardBox);
-    //flag 用来标记是否第一次落进板快
-    this.firstIn = true;
-    this.isFall = false;
+
 }
 
 //2018年11月14日 用Layabox官方循环重写鼠标与键盘移动
@@ -59,19 +57,15 @@ function onMouseUp(){
 function runLeft(){
     this.luwei.playAction("run_left");
     if(this.luwei.x - 1 >= 55){
-        this.luwei.x -= 4;
+        this.luwei.x -= 5;
     }
 }
 function runRight(){
     this.luwei.playAction("run_right");
     if(this.luwei.x + 1 <= stageWidth-55){
-        this.luwei.x += 4;
+        this.luwei.x += 5;
     }
 }
-//增加板左移右移
-// function moveLeft(){
-//     this.luwei.x -= 2;
-// }
 //键盘响应
 function onKeyDown(e){
     //按下左键
@@ -87,6 +81,7 @@ function onKeyDown(e){
 function onLoop(){
     this.isFall = true;
     showHp(this.luwei.hp);
+    //TODO:难度分级，简单普通困难三模式
     //30帧一个板
     if(Laya.timer.currFrame % 30 === 0){
         createBoard();
@@ -96,11 +91,7 @@ function onLoop(){
         this.level += 1;
         this.gameInfo.level(this.level);
     }
-    // if(this.luwei.hp <= 0){
-    //     this.luwei.dead = true;
-    // }
     //检测碰撞
-    // this.luwei.y += this.luwei.speed;
     //芦苇下落
     this.luwei.fall();
     for(var i = this.boardBox.numChildren-1;i>-1;i--){
@@ -108,33 +99,6 @@ function onLoop(){
         board.y += board.speed;
         if(!this.luwei.dead && Math.abs(this.luwei.x-board.x) <= (this.luwei.bound.width/2 + board.bound.width/2) && 
             Math.abs(this.luwei.y-board.y) <= (this.luwei.bound.height/2 + board.bound.height/2)){
-                // if(this.firstIn){
-                //     this.firstIn = false;
-                //     board.doEffect(this.luwei);
-                //     // switch (board.type) {
-                //     //     case 0:
-                //     //         this.luwei.hpAdd(1);
-                //     //         Laya.SoundManager.playSound("sounds/hit0.mp3",1);
-                //     //         break;
-                //     //     case 1:
-                //     //         this.luwei.hpSub(3);
-                //     //         Laya.SoundManager.playSound("sounds/hit1.mp3",1);
-                //     //         // Laya.timer.loop(10,this.luwei,runLeft,2);
-                //     //         break;
-                //     //     case 2:
-                //     //         this.luwei.hpAdd(1);
-                //     //         Laya.SoundManager.playSound("sounds/hit0.mp3",1);
-                //     //         board.playAction("down");
-                //     //         break;
-                //     //     case 3:
-                //     //         this.luwei.hpAdd(1);
-
-                //     //     default:
-                //     //         break;
-                //     // }
-                    
-                    
-                // }
                 board.doEffect(this.luwei);
                 this.isFall = false;
                 this.luwei.y = board.y - 40;
@@ -155,11 +119,9 @@ function onLoop(){
         Laya.SoundManager.playSound("sounds/hit2.mp3",1);
     }
     if(this.luwei.y > 850){
-        // this.luwei.dead = true;
         resetDatas();
         Laya.timer.clear(this,onLoop);
         this.gameInfo.reset();
-
     }
 }
 
@@ -167,14 +129,33 @@ function onLoop(){
 function createBoard(){
     var r = Math.random();
     var board = Laya.Pool.getItemByClass("board",Board);
-    board.init(parseInt(Math.random() * 5));
+    board.init(parseInt(Math.random() * 5),this.boardSpeed);
     board.pos((r * (stageWidth-160))+80,stageHeight + 80);
     this.boardBox.addChild(board);
 }
 
 //用于重新开始游戏
-function startGame(){
-    //移除旧板
+function startGame(nandu){
+    //难度判断
+    switch (nandu) {
+        case "EASY":
+            this.createBoardInterval = 30;
+            this.boardSpeed = -3;
+            break;
+        case "NORMAL":
+            this.createBoardInterval = 20;
+            this.boardSpeed = -4;
+            break;
+        case "HARD":
+            this.createBoardInterval = 10;
+            this.boardSpeed = -5;
+            break;
+        default:
+            this.createBoardInterval = 30;
+            this.boardSpeed = -3
+            break;
+    }
+    //重置数据
     resetDatas();
     //重新开始
     this.luwei.init();
@@ -183,7 +164,7 @@ function startGame(){
 
     //开始之板
     var board1 = new Board();
-    board1.init(0);
+    board1.init(0,this.boardSpeed);
     board1.pos(240,760);
     this.boardBox.addChild(board1);
 
@@ -197,6 +178,9 @@ function startGame(){
 
 //重置数据
 function resetDatas(){
+    //flag 用来标记是否在下落
+    this.isFall = false;
+
     //移除旧板
     for(var i = this.boardBox.numChildren-1;i>-1;i--){
         var board = this.boardBox.getChildAt(i);

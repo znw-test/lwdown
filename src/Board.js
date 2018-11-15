@@ -5,9 +5,9 @@ var Board = (function(_super){
     Board.cache = false;
     Laya.class(Board,"Board",_super);
     var _proto = Board.prototype;
-    _proto.init = function(_type){
+    _proto.init = function(_type,_speed){
         //板子的速度
-        this.speed = -4;
+        this.speed = _speed;
         //板子的种类
         this.type = _type;
         //一次性效果标记

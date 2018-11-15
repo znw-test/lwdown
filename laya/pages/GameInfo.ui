@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":12,
+    "selecteID":14,
     "props":{"width":480,"sceneColor":"#000000","height":800},
     "nodeParent":-1,
     "label":"View",
@@ -67,19 +67,6 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":400,"x":120,"width":240,"var":"startLabel","text":"开始游戏","styleSkin":"comp/label.png","height":79,"fontSize":30,"color":"#ffffff","align":"center"},
-            "nodeParent":1,
-            "label":"Label(startLabel)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":9,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
             "props":{"y":6,"x":58,"width":26,"text":"hp[","styleSkin":"comp/label.png","height":18,"fontSize":15,"color":"#ffffff"},
             "nodeParent":1,
             "label":"Label",
@@ -113,6 +100,45 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":12,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":338,"x":120,"width":240,"var":"easyStartLabel","text":"开始游戏（简单）","styleSkin":"comp/label.png","height":39,"fontSize":30,"color":"#ffffff","align":"center"},
+            "nodeParent":1,
+            "label":"Label(easyStartLabel)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":9,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":393,"x":120,"width":240,"var":"normalStartLabel","text":"开始游戏（中等）","styleSkin":"comp/label.png","height":39,"fontSize":30,"color":"#ffffff","align":"center"},
+            "nodeParent":1,
+            "label":"Label(normalStartLabel)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":13,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":451,"x":120,"width":240,"var":"hardStartLabel","text":"开始游戏（困难）","styleSkin":"comp/label.png","height":39,"fontSize":30,"color":"#ffffff","align":"center"},
+            "nodeParent":1,
+            "label":"Label(hardStartLabel)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":14,
             "child":[
                 ]
         }],
